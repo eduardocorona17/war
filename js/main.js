@@ -26,6 +26,7 @@ let shuffledDeck, pDeck, cDeck, pHand, cHand, cPoints, pPoints, winner;
 let message = document.getElementById("message")
 let playerScoreEl = document.getElementById("playerScore")
 let computerScoreEL = document.getElementById("computerScore")
+let button = document.getElementById("draw-card")
 
 /*----- event listeners -----*/
 document.getElementById("draw-card").addEventListener("click", drawCard);
