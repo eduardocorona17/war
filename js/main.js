@@ -17,7 +17,7 @@ const masterDeck = buildMasterDeck();
 //4. game ends when 1 player takes all cards  
 
 /*----- app's state (variables) -----*/
-let shuffledDeck, pDeck, cDeck, pHand, cHand, cPoints, pPoints, winner;
+let shuffledDeck, pDeck, cDeck, pHand, cHand, cPoints, pPoints;
 
 
 
@@ -27,6 +27,7 @@ let message = document.getElementById("message")
 let playerScoreEl = document.getElementById("playerScore")
 let computerScoreEL = document.getElementById("computerScore")
 let button = document.getElementById("draw-card")
+let winner = document.getElementById('winner')
 
 /*----- event listeners -----*/
 document.getElementById("draw-card").addEventListener("click", drawCard);
@@ -75,15 +76,30 @@ function compareCards(x, y) {
 
 
 function playerWins() {
-  if (pPoints === 10 && cPoints <= 10){
-  console.log("Player wins!");
- } else if (cPoints === 10 || pPoints <= 10){
-  console.log("Computer wins!")
-
-  }else{
-    console.log("tie!")
+  if (pPoints === 10) {
+    winner.innerHTML = "Computer Lost, the Player Wins!";
+    console.log("Computer Lost, the Player Wins!")
+    document.getElementById('draw-card').disabled = true;
+  }
+  else if (cPoints === 10) {
+    winner.innerHTML = "Player Lost, the Computer Wins!";
+    console.log("Player Lost, the Computer Wins!")
+    document.getElementById('draw-card').disabled = true;
   }
 }
+
+
+  //   if (pPoints === 10 && cPoints <= 10){
+    
+//     console.log("Player wins!");
+//  } else if (cPoints === 10 || pPoints <= 10){
+  
+//   console.log("Computer wins!")
+
+//   }else{
+//     console.log("tie!")
+//   }
+// }
 
 
 
