@@ -1,0 +1,1 @@
+Technology used: HTML, CSS, JavaScript

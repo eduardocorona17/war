@@ -1,0 +1,27 @@
+body {
+    background-color: #1e5612;
+    
+}
+html {
+    text-align: center;
+}
+h1 {
+    font-family: Snell Roundhand;
+}
+
+#message {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#playerScore, #computerScore {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+p {
+    font-family: fantasy;
+}
+#draw-card {
+    background-color: red;
+    border-radius: 12px;
+    font-size: 30px;
+    border: none;
+}

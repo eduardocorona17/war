@@ -2,7 +2,7 @@
 const suits = ['s', 'c', 'd', 'h'];//spades clubs diamonds hearts
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 const cardLookup = {
-  "J": 11, // these were assigned a value because all other cards containt heir own value 
+  "J": 11, // these were assigned a value because all other cards contain their own value 
   "Q": 12,
   "K": 13,
   "A": 14
@@ -30,14 +30,15 @@ let button = document.getElementById("draw-card")
 let winner = document.getElementById('winner')
 
 /*----- event listeners -----*/
-document.getElementById("draw-card").addEventListener("click", drawCard);
+// document.getElementById("draw-card").addEventListener("click", drawCard);
+button.addEventListener("click", drawCard)
 
 /*----- functions -----*/
 init()
 
 
 
-function init() {//starts the whole thing 
+function init() {//starts the whole thing .. these are function definitions they are only executed when you invoke it  
   shuffledDeck = getNewShuffledDeck();
   pDeck = shuffledDeck.splice(0, 26) //taking 26 card sout of deck
   cDeck = shuffledDeck // only 26 cards left that are assigned to computer
@@ -53,15 +54,31 @@ function drawCard() {
   cHand.push(drawnComputer);
   let drawnPlayer = pDeck.pop();
   pHand.push(drawnPlayer);
-  document.getElementById("computer").className = `card ${drawnComputer.face}`;
+  document.getElementById("computer").className = `card ${drawnComputer.face}`; //grabs html id element of 'computer' & assigns html class to it = to 'card comp face etc
   document.getElementById("player").className = `card ${drawnPlayer.face}`;
   compareCards(drawnComputer.value, drawnPlayer.value);
-playerWins();
+  takeAll(drawnPlayer, drawnComputer);
+checkWinner();
 }
-function compareCards(x, y) {
-  if (x === y) {
+
+
+function takeAll(playerCard, computerCard){
+  if (playerCard.value > computerCard.value) {
+    pHand.push(computerScoreEL)
+  } else if (computerCard.value > playerCard.value) {
+    cHand.push(playerCard);
+  } else {
+    pHand.push(playerCard);
+    cHand.push(computerCard);
+
+  }
+  
+}
+
+function compareCards(compCardValue, playerCardValue) {
+  if (compCardValue === playerCardValue) {
   message.innerHTML = "Tie!";
-  } else if (x > y) {
+  } else if (compCardValue > playerCardValue) {
     cPoints++;
     computerScoreEL.innerHTML = cPoints;
     message.innerHTML = "Computer wins!";
@@ -75,7 +92,7 @@ function compareCards(x, y) {
 }
 
 
-function playerWins() {
+function checkWinner() {
   if (pPoints === 10) {
     winner.innerHTML = "Computer Lost, the Player Wins!";
     console.log("Computer Lost, the Player Wins!")
@@ -122,7 +139,8 @@ function buildMasterDeck() { // starts array on l 34
         // The 'face' property maps to the library's CSS classes for cards
         face: `${suit}${rank}`,
         // Setting the 'value' property for war
-        value: Number(rank) || cardLookup[rank]
+        value: Number(rank) || cardLookup[rank] //this grabs string oh rank and adds a number to it bc js cannot interpret it as a # but does so as a str. this fixes that
+        
       });
     });
   });
