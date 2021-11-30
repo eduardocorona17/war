@@ -11,10 +11,9 @@ const cardLookup = {
 const masterDeck = buildMasterDeck();
 //war rules
 //1. deck divided evenly, 26 each player cards are placed face down  
-//2. Players turn up cards at the same time, player with higher card takes both cards, places them faxce down at bottom of his deck
-//3.if cards same rank, war! each player turns up 1 card face down, one face up, player w higher card takes all 6
-//3 continued-- if in war, and both cards are same rank, both players place another card face down and another face up, player with higher card takes all 10 and so forth  
-//4. game ends when 1 player takes all cards  
+//2. Players turn up cards at the same time, player with higher card takes both cards, places them face down at bottom of his deck
+//3. If card rank same value, tie. Both players keep their own card and points remain the same.  
+//4. game ends when 1 player reaches 10 points  
 
 /*----- app's state (variables) -----*/
 let shuffledDeck, pDeck, cDeck, pHand, cHand, cPoints, pPoints;
@@ -26,13 +25,14 @@ let shuffledDeck, pDeck, cDeck, pHand, cHand, cPoints, pPoints;
 let message = document.getElementById("message")
 let playerScoreEl = document.getElementById("playerScore")
 let computerScoreEL = document.getElementById("computerScore")
-let button = document.getElementById("draw-card")
+let drawButton = document.getElementById("draw-card")
+let resetButton = document.getElementById("reset-button")
 let winner = document.getElementById('winner')
 
 /*----- event listeners -----*/
 // document.getElementById("draw-card").addEventListener("click", drawCard);
-button.addEventListener("click", drawCard)
-
+drawButton.addEventListener("click", drawCard)
+resetButton.addEventListener("click", init)
 /*----- functions -----*/
 init()
 
@@ -46,8 +46,12 @@ function init() {//starts the whole thing .. these are function definitions they
   cHand = []
   pPoints = 0
   cPoints = 0
+  
 
 }
+
+  
+
 
 function drawCard() {
   let drawnComputer = cDeck.pop();
@@ -106,31 +110,11 @@ function checkWinner() {
 }
 
 
-  //   if (pPoints === 10 && cPoints <= 10){
-    
-//     console.log("Player wins!");
-//  } else if (cPoints === 10 || pPoints <= 10){
+
   
-//   console.log("Computer wins!")
-
-//   }else{
-//     console.log("tie!")
-//   }
-// }
 
 
-
-
-
-
-
-
-
-
-
-
-
-function buildMasterDeck() { // starts array on l 34
+function buildMasterDeck() { 
   const deck = [];
   // Use nested forEach to generate card objects
   suits.forEach(function (suit) { // iterates through each s c d h
@@ -139,7 +123,7 @@ function buildMasterDeck() { // starts array on l 34
         // The 'face' property maps to the library's CSS classes for cards
         face: `${suit}${rank}`,
         // Setting the 'value' property for war
-        value: Number(rank) || cardLookup[rank] //this grabs string oh rank and adds a number to it bc js cannot interpret it as a # but does so as a str. this fixes that
+        value: Number(rank) || cardLookup[rank] //this grabs string of rank and adds a number to it bc js cannot interpret it as a # but does so as a str. this fixes that
         
       });
     });
@@ -176,3 +160,13 @@ function getNewShuffledDeck() { //
 
 
 //create id's in html for cards that we can access through JS 
+
+
+
+
+
+
+
+
+
+
