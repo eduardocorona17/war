@@ -26,13 +26,13 @@ let message = document.getElementById("message")
 let playerScoreEl = document.getElementById("playerScore")
 let computerScoreEL = document.getElementById("computerScore")
 let drawButton = document.getElementById("draw-card")
-let resetButton = document.getElementById("reset-button")
+// let resetButton = document.getElementById("reset-button")
 let winner = document.getElementById('winner')
 
 /*----- event listeners -----*/
 // document.getElementById("draw-card").addEventListener("click", drawCard);
 drawButton.addEventListener("click", drawCard)
-resetButton.addEventListener("click", init)
+// resetButton.addEventListener("click", init)
 /*----- functions -----*/
 init()
 
@@ -145,6 +145,10 @@ function getNewShuffledDeck() { //
     newShuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]); // splice takes idx out of array completely. once removes oushes new card into shuffled deck on line 53
   }
   return newShuffledDeck;
+}
+
+function restart() {
+  location.reload();
 }
 
 //let player deck = array / let computer deck = array 
